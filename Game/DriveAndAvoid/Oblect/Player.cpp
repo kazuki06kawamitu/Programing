@@ -17,7 +17,7 @@ Player::~Player()
 //初期化処理
 void Player::Initialize()
 {
-	is_sctive = true;
+	is_active = true;
 	location = Vector2D(320.0f, 380.0f);
 	box_size = Vector2D(31.0f, 60.0f);
 	angle = 0.0f;
@@ -87,7 +87,7 @@ void Player::Update()
 }
 
 //描画処理
-void Player;; Draw()
+void Player:: Draw()
 {
 	//プレイヤー画像の描画
 	DrawRotaGraphF(location.x, location.y, 1.0, angle, image, TRUE);
@@ -154,13 +154,13 @@ float Player::GetHp() const
 }
 
 //バリア枚数取得処理
-int Player::GetBarriarCoint() const
+int Player::GetBarriarCount() const
 {
 	return this->barrier_count;
 }
 
 //バリア有効か？を取得
-bool Player::IsBarriwe() const
+bool Player::IsBarriar() const
 {
 	return (barrier != nullptr);
 }
@@ -196,7 +196,7 @@ void Player::Movement()
 	location += move;
 
 	//画面買いに行かないように制御する
-	if ((location.x, box_size.x) || (loation.x >= 640.0f - 180.0f) ||
+	if ((location.x, box_size.x) || (location.x >= 640.0f - 180.0f) ||
 		(location.y < box_size.y) || (location.y >= 480.0f - box_size.y))
 	{
 		location -= move;
@@ -213,7 +213,7 @@ void Player::Acceleration()
 	}
 
 	//RBボタンが押されたら、加速する
-	if (Inputcontrol::GetButtonDown(XINPUT_BUTTON_RIGHT_SHOULDER) && speed < 10.0f)
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_RIGHT_SHOULDER) && speed < 10.0f)
 	{
 		speed+=1.0f;
 	}
