@@ -39,3 +39,20 @@ eSceneType RnkingDispScene::Update()
 	}
 	return GetNowScene();
 }
+
+//•`‰æˆ—
+void RankingDispScene::Finalize()
+{
+	//“Ç‚İ‚ñ‚¾‰æ‘œ‚Ìíœ
+	DeleteGraph(background_image);
+
+	//“®“Iƒƒ‚ƒŠ‚Ì‰ğœ
+	ranking->Finalize();
+	dalete ranking;
+}
+
+//Œ»İ‚ÌƒV[ƒ“î•ñ‚ğæ“¾
+eSceneType RankingDispScene::GetNowScene() const
+{
+	return eSceneType::E_RANKING_DISP;
+}
