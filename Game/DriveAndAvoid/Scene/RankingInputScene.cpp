@@ -2,13 +2,13 @@
 #include "../Utility/InputControl.h"
 #include "DxLib.h"
 
-RankingInputScene::RankingInputScene() :background_imagr(NULL),
+RankingInputScene::RankingInputScene() : background_image(NULL),
 ranking(nullptr), score(0), name_num(0), cursor_x(0), cursor_y(0)
 {
 	memset(name, NULL, (sizeof(char) * 15));
 }
 
-RankingInputScene::~RabkingInputScene()
+RankingInputScene::~RankingInputScene()
 {
 
 }
@@ -58,7 +58,7 @@ eSceneType RankingInputScene::Update()
 	if (is_change)
 	{
 		//ランキング表示に遷移
-		return eSceneType::E_RANKIN_DISP;
+		return eSceneType::E_RANKING_DISP;
 	}
 	else
 	{
@@ -80,7 +80,7 @@ void RankingInputScene::Draw() const
 	const int font_size = 25;
 	for (int i = 0; i < 26; i++)
 	{
-		int x = (i % 13) * fontsize + 15;
+		int x = (i % 13) * font_size + 15;
 		int y = (i / 13) * font_size + 300;
 		DrawFormatString(x, y, GetColor(255, 255, 255), "%-3c", 'a' + i);
 		y = ((i / 13) + 2) * font_size + 300;
@@ -127,14 +127,14 @@ void RankingInputScene::Finalize()
 //現在のシーン情報を取得
 eSceneType RankingInputScene::GetNowScene() const
 {
-	return eScenetype::E_RANKING_INPUT;
+	return eSceneType::E_RANKING_INPUT;
 }
 
 //名前入力処理
 bool RankingInputScene::InputName()
 {
 	//カーソル操作処理
-	if (InputControl::GetButtonDown(XINPUT_BUTTON_DPAT_LEFT))
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_DPAD_LEFT))
 	{
 		if (cursor_x > 0)
 		{
@@ -200,7 +200,7 @@ bool RankingInputScene::InputName()
 		{
 			if (cursor_x == 0)
 			{
-				name[name] = '\n';
+				name[name_num] = '\0';
 				return true;
 			}
 			else

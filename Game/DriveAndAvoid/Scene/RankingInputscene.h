@@ -15,7 +15,7 @@ private:
 	int cursor_y;           //カーソルy座標
 
 public:
-	RankingInputSenen();
+	RankingInputScene();
 	virtual~RankingInputScene();
 
 	virtual void Initialize() override;

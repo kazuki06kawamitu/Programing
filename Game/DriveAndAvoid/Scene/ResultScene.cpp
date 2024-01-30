@@ -3,7 +3,7 @@
 #include "../Utility/InputControl.h"
 #include "DxLib.h"
 
-ResultScene::ResultScene() back_ground(NULL), score(0)
+ResultScene::ResultScene() : back_ground(NULL), score(0)
 {
 	for (int i = 0; i < 3; i++)
 	{
@@ -17,31 +17,31 @@ ResultScene::~ResultScene()
 }
 
 //初期化処理
-void ResultScene;; Initialize()
+void ResultScene::Initialize()
 {
-	back_ground = loadGraph("Resourde/images/back.bmp");
+	back_ground = LoadGraph("Resourde/images/back.bmp");
 	int result = LoadDivGraph("Resource/images/car.bmp", 3, 3, 1, 63, 120,
 		enemy_image);
 
 	//エラーチェック
-	if (back_ground == -1
+	if (back_ground == -1)
 	{
 		throw("Resource/images/back/back.bmpがありません\n");
 	}
-		if (result == -1)
-		{
-			throw("Resource/images/car.bmpがありません\n");
-		}
+	if (result == -1)
+	{
+		throw("Resource/images/car.bmpがありません\n");
+	}
 
-		//ゲーム結果の読み込み
-		ReadResultData();
+	//ゲーム結果の読み込み
+	ReadResultData();
 }
 
 //更新処理
 eSceneType ResultScene::Update()
 {
 	//Bボタンでランキングに遷移する
-	if (Inputcontrol::GetButtonDown(XINPUT_BUTTON_B))
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_B))
 	{
 		return eSceneType::E_RANKING_INPUT;
 	}
@@ -68,7 +68,7 @@ void ResultScene::Draw() const
 	{
 		DrawRotaGraph(230, 230, +(i + 20), 0.3f, DX_PI_F / 2, enemy_image[i],
 			TRUE);
-		DrawFormatString(260, 222 + (i * 21), GetColor(255, 255, 255), "%6d x%4d=%6d", enemy_count[i], (i + 1) * 50 * enemycount[i]);
+		DrawFormatString(260, 222 + (i * 21), GetColor(255, 255, 255), "%6d x%4d=%6d", enemy_count[i], (i + 1) * 50 * enemy_count[i]);
 	}
 	DrawString(180, 290, "スコア", GetColor(0, 0, 0));
 	DrawFormatString(180, 290, 0xFFFFFF, "    =%6d", score);

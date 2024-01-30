@@ -37,7 +37,7 @@ eSceneType HelpScene::Update()
 }
 
 //•`‰æˆ—
-void helpScene::Draw() const
+void HelpScene::Draw() const
 {
 	//”wŒi‰æ‘œ‚Ì•`‰æ
 	DrawGraph(0, 0, background_image, FALSE);

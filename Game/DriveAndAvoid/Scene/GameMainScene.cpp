@@ -4,7 +4,8 @@
 #include <math.h>
 
 GameMainScene::GameMainScene() : high_score(0), back_ground(NULL),
-barrier_image(NULL), mileage(0), player(nullptr),
+barrier_image(NULL), 
+mileage(0), player(nullptr),
 
 enemy(nullptr)
 {
@@ -15,10 +16,10 @@ enemy(nullptr)
 	}
 }
 
- GameMainSceneScene::~GaneMainscene()
+GameMainScene::~GameMainScene()
 {
 
-}
+ }
 
  //初期化処理
  void GameMainScene::Initialize()
@@ -75,16 +76,16 @@ enemy(nullptr)
 	 {
 		 for (int i = 0; i < 10; i++)
 		 {
-			 if (enemy[i] = nullptr)
+			 if (enemy[i] == nullptr)
 			 {
 				 int type = GetRand(3) % 3;
-				 enemy[i] = new enemy(type, enemy_image[type]);
+				 enemy[i] = new Enemy(type, enemy_image[type]);
 				 enemy[i]->Initialize();
 				 break;
 			 }
 		 }
 	 }
-	 //てきの更新と当たり判定チェック
+	 //敵の更新と当たり判定チェック
 	 for (int i = 0; i < 10; i++)
 	 {
 		 if (enemy[i] != nullptr)
@@ -94,7 +95,7 @@ enemy(nullptr)
 			 //画面外に言ったら、敵を削除してスコア加算
 			 if (enemy[i]->GetLocation().y >= 640.0f)
 			 {
-				 enemy_count[enemy[i]->Gettype()]++;
+				 enemy_count[enemy[i]->GetType()]++;
 				 enemy[i]->Finalize();
 				 delete enemy[i];
 				 enemy[i] = nullptr;
@@ -104,7 +105,7 @@ enemy(nullptr)
 			 {
 				 player->SetActive(false);
 				 player->DecreaseHp(-50.0f);
-				 emey[i]->Finalize();
+				 enemy[i]->Finalize();
 				 delete enemy[i];
 				 enemy[i] = nullptr;
 			 }
@@ -112,9 +113,9 @@ enemy(nullptr)
 	 }
 
 	 //プレイヤーの燃料か体力が０未満なら、リザルトに遷移する
-	 if (player->getFuel() < 0.0f || player->gethHp() < 0.0f)
+	 if (player->GetFuel() < 0.0f || player->GetHp() < 0.0f)
 	 {
-		 return eScenetype::E_RESULT;
+		 return eSceneType::E_RESULT;
 	 }
 	 return GetNowScene();
  }
@@ -140,7 +141,7 @@ enemy(nullptr)
 
 	 //UIの描画
 	 DrawBox(500, 0, 640, 480, GetColor(0, 130, 0), TRUE);
-	 SetFontsize(16);
+	 SetFontSize(16);
 	 DrawFormatString(510, 20, GetColor(0, 0, 0), "ハイスコア");
 	 DrawFormatString(560, 40, GetColor(255, 255, 255), "%08d", high_score);
 	 DrawFormatString(510, 80, GetColor(0, 0, 0), "避けた数");
@@ -196,12 +197,12 @@ enemy(nullptr)
 	 }
 
 	 //スコアを保存
-	 fprintf(fp, "%d,\n", enemy_const[i]);
+	 fprintf(fp, "%d,\n", score);
 
 	 //避けた数と得点を保存
 	 for (int i = 0; i < 3; i++)
 	 {
-		 fprintf(fp, "%d,\n", enemy_coount[i]);
+		 fprintf(fp, "%d,\n", enemy_count[i]);
 	 }
 
 	 //ファイルクローズ
@@ -232,7 +233,7 @@ enemy(nullptr)
  //ハイスコアの読み込み
  void GameMainScene::ReadHighScore()
  {
-	 RnkingData;
+	 RankingData data;
 	 data.Initialize();
 
 	 high_score = data.GetScore(0);

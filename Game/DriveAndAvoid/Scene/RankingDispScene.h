@@ -9,7 +9,7 @@ private:
 
 private:
 	int background_image;//背景画像
-	RankingDaDta* ranking;//ランキング情報
+	RankingData* ranking;//ランキング情報
 
 public:
 	RankingDispScene();

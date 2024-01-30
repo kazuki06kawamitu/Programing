@@ -75,10 +75,10 @@ void Player::Update()
 		}
 	}
 	// バリアが生成されたら、更新を行う
-	if (barrier != nullpty)
+	if (barrier != nullptr)
 	{
 		//バリア時間が経過したか？していたら、削除する
-		if (barrier->InFinished(this->speed))
+		if (barrier->IsFinished(this->speed))
 		{
 			delete barrier;
 			barrier = nullptr;
@@ -160,7 +160,7 @@ int Player::GetBarriarCount() const
 }
 
 //バリア有効か？を取得
-bool Player::IsBarriar() const
+bool Player::IsBarrier() const
 {
 	return (barrier != nullptr);
 }
@@ -196,7 +196,7 @@ void Player::Movement()
 	location += move;
 
 	//画面買いに行かないように制御する
-	if ((location.x, box_size.x) || (location.x >= 640.0f - 180.0f) ||
+	if ((location.x < box_size.x) || (location.x >= 640.0f - 180.0f) ||
 		(location.y < box_size.y) || (location.y >= 480.0f - box_size.y))
 	{
 		location -= move;
@@ -207,14 +207,16 @@ void Player::Movement()
 void Player::Acceleration()
 {
 	//LBボタンが押されたら、減速する
-	if (InputControl::GetButtonDown(XINPUT_BUTTON_LEFT_SHOULDER) && speed > (1.0f)
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_LEFT_SHOULDER) && speed
+		> 1.0f)
 	{
-		speed-=1.0f;
+		speed -= 1.0f;
 	}
 
 	//RBボタンが押されたら、加速する
-	if (InputControl::GetButtonDown(XINPUT_BUTTON_RIGHT_SHOULDER) && speed < 10.0f)
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_RIGHT_SHOULDER) && speed
+		< 10.0f)
 	{
-		speed+=1.0f;
+		speed += 1.0f;
 	}
 }

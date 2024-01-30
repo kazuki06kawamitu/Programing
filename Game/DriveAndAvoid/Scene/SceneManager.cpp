@@ -1,5 +1,5 @@
 #include "SceneManager.h"
-#include "../Utitlity/InputControl.h"
+#include "../Utility/InputControl.h"
 #include "DxLib.h"
 #include "TitleScene.h"
 #include "GameMainScene.h"
@@ -55,7 +55,7 @@ void SceneManager::Update()
 	//メインループ
 	while (ProcessMessage() != -1)
 	{
-		LONGLONG now_time = GetNowhiPerformanceCount();
+		LONGLONG now_time = GetNowHiPerformanceCount();
 
 		//1フレーム当たりの時間に到達したら、更新および描画処理を行う
 		if ((now_time - start_time) >= DELTA_SECOND)
@@ -81,12 +81,12 @@ void SceneManager::Update()
 			//現在のシーンと次のシーンが違っていたら、切り替え処理を行う
 			if (next != current_scene->GetNowScene())
 			{
-				ChsngeScene(next);
+				ChangeScene(next);
 			}
 		}
 
 		//ESCAPEキーが押されたら、ゲームを終了する
-		if (CheckHiKey(KEY_INPUT_ESCAPE) || InputControl::GetButtonUp(XINPUT_BUTTON_BACK))
+		if (CheckHitKey(KEY_INPUT_ESCAPE) || InputControl::GetButtonUp(XINPUT_BUTTON_BACK))
 		{
 			break;
 		}
@@ -111,7 +111,7 @@ void SceneManager::Finalize()
 void SceneManager::Draw() const
 {
 	//画面の初期化
-	ClearDrawScereen();
+	ClearDrawScreen();
 
 	//シーンの描画
 	current_scene->Draw();
@@ -152,7 +152,7 @@ SceneBase* SceneManager::CreateScene(eSceneType scene_type)
 	//引数(シーンタイプ)によって、生成するシーンを決定する
 	switch (scene_type)
 	{
-	case eSceneType::ETITLE:
+	case eSceneType::E_TITLE:
 		return new TitleScene;
 	case eSceneType::E_MAIN:
 		return new GameMainScene;

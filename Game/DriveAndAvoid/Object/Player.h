@@ -35,7 +35,7 @@ public:
 	float GetFuel() const;         //燃料取得
 	float GetHp() const;          //体力取得
 	int GetBarriarCount() const;   //バリアの枚数取得
-	bool IsBarriar() const;        //バリア有効か？を取得
+	bool IsBarrier() const;        //バリア有効か？を取得
 
 private:
 	void Movement();    //移動処理
