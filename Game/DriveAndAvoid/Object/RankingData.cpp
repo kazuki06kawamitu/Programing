@@ -99,6 +99,7 @@ void RankingData::SortData()
 
 				char buf[15] = {};
 				strcpy_s(buf, name[i]);
+				strcpy_s(name[i], name[j]);
 				strcpy_s(name[j], buf);
 			}
 		}

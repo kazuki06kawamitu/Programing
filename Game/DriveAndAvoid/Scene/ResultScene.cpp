@@ -19,14 +19,13 @@ ResultScene::~ResultScene()
 //初期化処理
 void ResultScene::Initialize()
 {
-	back_ground = LoadGraph("Resourde/images/back.bmp");
-	int result = LoadDivGraph("Resource/images/car.bmp", 3, 3, 1, 63, 120,
-		enemy_image);
+	back_ground = LoadGraph("Resource/images/back.bmp");
+	int result = LoadDivGraph("Resource/images/car.bmp", 3, 3, 1, 63, 120,enemy_image);
 
 	//エラーチェック
 	if (back_ground == -1)
 	{
-		throw("Resource/images/back/back.bmpがありません\n");
+		throw("Resource/images/back.bmpがありません\n");
 	}
 	if (result == -1)
 	{
@@ -63,15 +62,14 @@ void ResultScene::Draw() const
 	SetFontSize(20);
 	DrawString(220, 170, "ゲームオーバー", GetColor(240, 0, 0));
 	SetFontSize(16);
-	DrawString(180, 200, "走行距離         ", GetColor(0, 0, 0));
+	DrawString(180, 200, "走行距離", GetColor(0, 0, 0));
 	for (int i = 0; i < 3; i++)
 	{
-		DrawRotaGraph(230, 230, +(i + 20), 0.3f, DX_PI_F / 2, enemy_image[i],
-			TRUE);
-		DrawFormatString(260, 222 + (i * 21), GetColor(255, 255, 255), "%6d x%4d=%6d", enemy_count[i], (i + 1) * 50 * enemy_count[i]);
+		DrawRotaGraph(230, 230, +(i * 20), 0.3f, DX_PI_F / 2, enemy_image[i],TRUE);
+		DrawFormatString(260, 222 + (i * 21), GetColor(255, 255, 255), "%6dx%4d=%6d", enemy_count[i], (i + 1) * 50 * enemy_count[i]);
 	}
 	DrawString(180, 290, "スコア", GetColor(0, 0, 0));
-	DrawFormatString(180, 290, 0xFFFFFF, "    =%6d", score);
+	DrawFormatString(180, 290, 0xFFFFFF, "       =%6d", score);
 }
 
 //終了時処理
@@ -96,7 +94,7 @@ void ResultScene::ReadResultData()
 {
 	//ファイルオープン
 	FILE* fp = nullptr;
-	errno_t result = fopen_s(&fp, "Rescurce/dat/result_data.csv", "r");
+	errno_t result = fopen_s(&fp, "Resource/dat/result_data.csv", "r");
 
 	//エラーチェック
 	if (result != 0)

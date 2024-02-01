@@ -9,6 +9,7 @@ private:
 
 public:
 	HelpScene();
+	virtual ~HelpScene();
 	virtual void Initialize() override;
 	virtual eSceneType Update() override;
 	virtual void Draw() const override;

@@ -2,7 +2,7 @@
 
 #include  "SceneBase.h"
 
-class TitleScene :public ScnaBase
+class TitleScene :public SceneBase
 {
 private:
 

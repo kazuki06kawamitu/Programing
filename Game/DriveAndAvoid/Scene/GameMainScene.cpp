@@ -30,7 +30,7 @@ GameMainScene::~GameMainScene()
 	 //画像の読み込み
 	 back_ground = LoadGraph("Resource/images/back.bmp");
 	 barrier_image = LoadGraph("Resource/images/barrier.png");
-	 int result = LoadDivGraph("Resource/miages/car.bmp", 3, 3, 1, 63, 120, enemy_image);
+	 int result = LoadDivGraph("Resource/images/car.bmp", 3, 3, 1, 63, 120, enemy_image);
 
 	 //エラーチェック
 	 if (back_ground == -1)
@@ -40,7 +40,7 @@ GameMainScene::~GameMainScene()
 
 	 if (result == -1)
 	 {
-		 throw("Resource / images / car.bmpがありません\n");
+		 throw("Resource/images/car.bmpがありません\n");
 	 }
 
 	 if (barrier_image == -1)

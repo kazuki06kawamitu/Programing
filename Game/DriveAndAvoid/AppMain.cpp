@@ -12,7 +12,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 	try
 	{
 		//シーンマネージャー機能の生成
-		SceneManager;
+		SceneManager manager;
 		//シーンマネージャー機能の初期化処理
 		manager.Initialize();
 		//シーンマネージャー機能の更新処理
@@ -25,6 +25,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
 		//エラー発生内容の出力
 		OutputDebugString(err_log);
 		//エラー終了を通知
-		return 0;
+		return -1;
 	}
+	//エラー終了を通知
+		return 0;
 }

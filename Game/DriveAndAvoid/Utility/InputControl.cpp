@@ -8,7 +8,7 @@ float InputControl::trigger[2] = {};
 Vector2D InputControl::stick[2] = {};
 
 //入力機能:更新処理
-void InputControl::Updata()
+void InputControl::Update()
 {
 	//XInputコントローラーの入力値を取得する
 	XINPUT_STATE input_state = {};
@@ -64,7 +64,7 @@ void InputControl::Updata()
 //ボタン取得:押している間
 bool InputControl::GetButton(int button)
 {
-	return CheckButtonRange(int button) && (now_button[button] &&
+	return CheckButtonRange(button) && (now_button[button] &&
 		old_button[button]);
 }
 
@@ -101,7 +101,7 @@ Vector2D InputControl::GetRightStick()
 }
 
 //右スティック取得
-Vector2D InputControl::GetRightStick()
+Vector2D InputControl::GetLeftStick()
 {
 	return stick[1];
 }
